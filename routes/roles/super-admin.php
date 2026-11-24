@@ -22,5 +22,6 @@ Route::resource('software-products', SoftwareProductController::class)->except('
 
 Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
 Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+Route::post('/settings/test-mail', [SettingController::class, 'testMail'])->middleware('throttle:5,1')->name('settings.test-mail');
 
 Route::get('/activity-logs', [ActivityLogController::class, 'index'])->name('activity-logs.index');
