@@ -355,8 +355,8 @@ tests/Feature/                  akses halaman per role, format license key
 
 ```bash
 # 1. Clone
-git clone https://github.com/ahsanul22/simlis-pelindo.git
-cd simlis-pelindo
+git clone https://github.com/ahsanul22/simlis-pmt.git
+cd simlis-pmt
 
 # 2. Dependency
 composer install
