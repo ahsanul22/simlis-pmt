@@ -87,7 +87,7 @@ Pengajuan → persetujuan/penolakan Manajemen → penyelesaian oleh Admin TI. Pe
 Lampiran per lisensi/perangkat/pengajuan: sertifikat lisensi, foto stiker SN, foto license key, PO, invoice, kontrak, BAST.
 
 ### 🔔 Notifikasi & reminder
-Notifikasi in-app di header, dan reminder otomatis **H-90 / 60 / 30 / 14 / 7 / 1** sebelum lisensi habis (hari bisa diatur Super Admin), dengan pencatatan anti-dobel.
+Notifikasi in-app di header, dan reminder otomatis **email (Gmail SMTP)** + lonceng pada **H-90 / 60 / 30 / 14 / 7 / 1** sebelum lisensi habis, dengan pencatatan anti-dobel. Jadwal hari dan isi email (subjek, sapaan, pembuka, penutup) bisa diatur Super Admin.
 
 ### 📈 Laporan & audit
 Laporan per periode, per vendor, dan per lokasi + estimasi biaya perpanjangan; audit log mencatat siapa melakukan apa dan kapan.
@@ -341,6 +341,8 @@ tests/Feature/                  akses halaman per role, format license key
 ---
 
 ## 🚀 Instalasi & Menjalankan
+
+> Ringkasan cepat (perintah harian, akun demo, email, troubleshooting): **[docs/CARA-MENJALANKAN.md](docs/CARA-MENJALANKAN.md)**
 
 ### Prasyarat
 

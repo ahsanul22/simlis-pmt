@@ -13,11 +13,14 @@ Komunikasi dengan user: **Bahasa Indonesia santai**. User mengerjakan bertahap d
 | 3. Backend (aksi tulis, validasi, notifikasi, scheduler, export) | ⏳ berikutnya |
 
 ### TODO tahap backend
-- Semua aksi tulis masih placeholder → cari `pendingBackend(` di `app/Http/Controllers`. Ganti dengan FormRequest (`app/Http/Requests/{Role}/...`) + logika simpan + `ActivityLog::record()`.
+- ✅ CRUD user Super Admin (`Requests/SuperAdmin/UserRequest` — contoh pola FormRequest + `ActivityLog::record()`; pengaman: tidak bisa ubah role/nonaktifkan/hapus diri sendiri, minimal 1 Super Admin aktif; hapus = soft delete, username/email tetap terpakai).
+- Aksi tulis lain masih placeholder → cari `pendingBackend(` di `app/Http/Controllers`. Ganti dengan FormRequest (`app/Http/Requests/{Role}/...`) + logika simpan + `ActivityLog::record()`.
 - Alur renewal: store (draft/submit sesuai `action`), cancel, approve/reject (Manajemen), complete (Admin TI: simpan periode lama ke `license_renewals`, update `licenses`, simpan lampiran). Satu lisensi maks. satu pengajuan terbuka (`RenewalStatus::openStatuses()`).
 - Upload lampiran (`shared/attachments/_upload-modal` masih `action="#"`) → simpan ke storage, tabel `attachments` (polimorfik).
-- Notifikasi: class Notification (database + mail), data wajib `title`, `message`, `url`, `icon` (dipakai header & halaman notifikasi).
-- Command terjadwal harian: kirim reminder sesuai `Setting::reminderDays()`, catat di `license_reminder_logs` (unik per license+end_date+threshold+channel).
+- Notifikasi: class Notification (database + mail), data wajib `title`, `message`, `url`, `icon` (dipakai header & halaman notifikasi). Contoh: `app/Notifications/LicenseExpiryReminder.php` + view `resources/views/mail/*`. Notifikasi alur renewal (diajukan/disetujui/ditolak/selesai) belum ada.
+- ✅ Email via Gmail SMTP (`.env` MAIL_* + App Password), `php artisan mail:test {email}`.
+- ✅ Pengaturan Super Admin tersimpan: ambang status, jadwal reminder, template email (`Setting::reminderMail()`, placeholder `{nama}` `{jumlah}` `{judul}` `{aplikasi}`), tombol kirim email contoh.
+- ✅ Reminder harian `licenses:send-reminders` (`--dry-run`, `--to=`), terjadwal di `Console\Kernel` jam `REMINDER_TIME`; butuh `php artisan schedule:work` / Task Scheduler di server.
 - Export laporan Excel/PDF (`reports.export`), update profil & password, settings update.
 - Ganti `authorizeBranch()` di base Controller dengan Policy bila logika otorisasi bertambah.
 
