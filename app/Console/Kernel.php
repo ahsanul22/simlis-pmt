@@ -12,7 +12,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Reminder masa berlaku lisensi (email Gmail + notifikasi lonceng). Jam bisa diubah via REMINDER_TIME di .env.
+        $schedule->command('licenses:send-reminders')
+            ->dailyAt(config('app.reminder_time'))
+            ->timezone(config('app.timezone'))
+            ->withoutOverlapping();
     }
 
     /**

@@ -10,6 +10,7 @@ class Setting extends Model
 {
     public const EXPIRY_THRESHOLDS = 'expiry_thresholds';
     public const REMINDER_DAYS = 'reminder_days';
+    public const REMINDER_MAIL = 'reminder_mail';
 
     protected $fillable = ['key', 'value', 'description'];
 
@@ -51,5 +52,33 @@ class Setting extends Model
     public static function reminderDays(): array
     {
         return array_map('intval', static::get(self::REMINDER_DAYS, [90, 60, 30, 14, 7, 1]));
+    }
+
+    /** Placeholder yang bisa dipakai di template email reminder → keterangannya. */
+    public const REMINDER_MAIL_PLACEHOLDERS = [
+        '{nama}' => 'Nama penerima',
+        '{jumlah}' => 'Jumlah lisensi di email',
+        '{judul}' => 'Judul otomatis, mis. "Lisensi akan habis dalam 14 hari"',
+        '{aplikasi}' => 'Nama aplikasi (SIMLIS)',
+    ];
+
+    public const REMINDER_MAIL_DEFAULTS = [
+        'subject' => '[{aplikasi}] {judul}',
+        'greeting' => 'Halo {nama},',
+        'intro' => 'Berikut {jumlah} lisensi yang mendekati akhir masa berlakunya. Mohon segera ditindaklanjuti (pengadaan / pengajuan perpanjangan).',
+        'closing' => "Salam,\nDivisi Teknologi Informasi",
+    ];
+
+    /** Template email reminder (teks bebas dari Super Admin, tabel lisensi tetap otomatis). @return array{subject:string, greeting:string, intro:string, closing:string} */
+    public static function reminderMail(): array
+    {
+        $saved = (array) static::get(self::REMINDER_MAIL, []);
+        $template = [];
+
+        foreach (self::REMINDER_MAIL_DEFAULTS as $key => $default) {
+            $template[$key] = filled($saved[$key] ?? null) ? (string) $saved[$key] : $default;
+        }
+
+        return $template;
     }
 }

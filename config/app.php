@@ -71,6 +71,9 @@ return [
 
     'timezone' => 'Asia/Jakarta',
 
+    // Jam kirim reminder lisensi harian (scheduler `licenses:send-reminders`).
+    'reminder_time' => env('REMINDER_TIME', '07:00'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
