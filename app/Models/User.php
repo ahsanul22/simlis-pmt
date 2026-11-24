@@ -53,6 +53,12 @@ class User extends Authenticatable
         return $this->role->isBranchScoped();
     }
 
+    /** Masih ada Super Admin aktif lain selain $user? (cegah sistem kehilangan semua Super Admin) */
+    public static function otherActiveSuperAdminExists(self $user): bool
+    {
+        return static::active()->role(UserRole::SUPER_ADMIN)->whereKeyNot($user->getKey())->exists();
+    }
+
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);

@@ -18,7 +18,7 @@
             <div class="card-header"><h2 class="card-title">Data Pengguna</h2></div>
             <div class="grid gap-5 p-5 sm:grid-cols-2">
                 <div class="sm:col-span-2"><x-form.input name="name" label="Nama lengkap" :value="$user->name" required /></div>
-                <x-form.input name="username" label="Username" :value="$user->username" required hint="Huruf kecil, angka, titik" />
+                <x-form.input name="username" label="Username" :value="$user->username" required hint="Huruf kecil, angka, titik, garis bawah" autocomplete="off" />
                 <x-form.input type="email" name="email" label="Email" :value="$user->email" required hint="Tujuan notifikasi reminder" />
                 <x-form.input name="nip" label="NIP / NIPP" :value="$user->nip" />
                 <x-form.input name="phone" label="No. HP" :value="$user->phone" />
@@ -69,9 +69,15 @@
             <div class="card-header"><h2 class="card-title">Keamanan</h2></div>
             <div class="space-y-4 p-5">
                 <x-form.input type="password" name="password" :label="$isEdit ? 'Password baru' : 'Password'" :required="! $isEdit"
-                              :hint="$isEdit ? 'Kosongkan jika tidak diubah' : 'Minimal 8 karakter'" autocomplete="new-password" />
+                              :hint="$isEdit ? 'Kosongkan jika tidak diubah. Min. 8 karakter, huruf & angka' : 'Minimal 8 karakter, kombinasi huruf & angka'" autocomplete="new-password" />
                 <x-form.input type="password" name="password_confirmation" label="Konfirmasi password" autocomplete="new-password" />
-                <x-form.toggle name="is_active" label="Akun aktif" :checked="$user->is_active ?? true" hint="Akun nonaktif tidak dapat login" />
+                <x-form.toggle name="is_active" label="Akun aktif" :checked="$user->is_active ?? true" hint="Akun nonaktif tidak dapat login & tidak menerima reminder" />
+                @error('is_active')<p class="form-error">{{ $message }}</p>@enderror
+                @if ($isEdit && $user->is(auth()->user()))
+                    <p class="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700 dark:bg-amber-500/10 dark:text-amber-300">
+                        Ini akun Anda sendiri — role & status aktif tidak dapat diubah dari sini.
+                    </p>
+                @endif
             </div>
         </div>
         <div class="flex gap-2">
