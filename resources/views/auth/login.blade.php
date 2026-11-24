@@ -10,8 +10,8 @@
         <div class="pointer-events-none absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-brand-400/10 blur-3xl"></div>
 
         <div class="relative flex items-center gap-3">
-            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white">
-                <x-icon name="key" class="h-6 w-6" />
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1.5">
+                <img src="{{ asset('images/logo-pelindo-mark.png') }}" alt="Logo Pelindo" class="h-full w-full object-contain">
             </span>
             <div>
                 <p class="font-bold tracking-wide text-white">{{ config('app.name') }}</p>
@@ -45,11 +45,9 @@
     {{-- Form login --}}
     <div class="flex items-center justify-center px-4 py-12 sm:px-8">
         <div class="w-full max-w-sm" x-data="{ showPassword: false }">
-            <div class="mb-8 flex items-center gap-3 lg:hidden">
-                <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white">
-                    <x-icon name="key" class="h-6 w-6" />
-                </span>
-                <p class="font-bold">{{ config('app.name') }}</p>
+            <div class="mb-8">
+                <img src="{{ asset('images/logo-pelindo.png') }}" alt="Pelindo"
+                     class="h-9 w-auto dark:rounded-lg dark:bg-white dark:px-3 dark:py-2 dark:h-12">
             </div>
 
             <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Masuk ke akun Anda</h2>

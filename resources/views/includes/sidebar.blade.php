@@ -6,8 +6,8 @@
        :class="sidebarOpen && 'translate-x-0'">
     {{-- Brand --}}
     <div class="flex h-16 shrink-0 items-center gap-3 border-b border-white/5 px-5">
-        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 text-white">
-            <x-icon name="key" class="h-5 w-5" />
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white p-1">
+            <img src="{{ asset('images/logo-pelindo-mark.png') }}" alt="Logo Pelindo" class="h-full w-full object-contain">
         </span>
         <div class="leading-tight">
             <p class="text-sm font-bold tracking-wide text-white">{{ config('app.name') }}</p>
