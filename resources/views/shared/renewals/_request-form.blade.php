@@ -27,7 +27,7 @@
                 <div class="sm:col-span-2">
                     <x-form.input name="new_name" label="Paket lisensi" :value="$license->name" hint="Ubah jika paket/level lisensi berganti" />
                 </div>
-                <x-form.input type="number" name="estimated_cost" label="Estimasi biaya (Rp)" min="0" step="1000" placeholder="0" />
+                <x-form.money name="estimated_cost" label="Estimasi biaya" />
                 <x-form.select name="attachment_category" label="Jenis lampiran"
                                :options="['other' => 'Penawaran harga / lainnya', 'license_certificate' => 'Bukti lisensi saat ini', 'device_photo' => 'Foto stiker SN']" />
                 <div class="sm:col-span-2">

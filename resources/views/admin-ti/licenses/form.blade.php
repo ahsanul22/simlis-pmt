@@ -150,7 +150,7 @@
         <div class="card">
             <div class="card-header"><h2 class="card-title">Pengadaan</h2></div>
             <div class="card-body space-y-4">
-                <x-form.input type="number" name="cost" label="Nilai (Rp)" :value="$license->cost" min="0" step="1000" />
+                <x-form.money name="cost" label="Nilai" :value="$license->cost" />
                 <x-form.input name="supplier" label="Supplier / reseller" :value="$license->supplier" />
                 <x-form.input name="contract_number" label="No. kontrak" :value="$license->contract_number" />
                 <x-form.input name="po_number" label="No. PO" :value="$license->po_number" />

@@ -35,7 +35,7 @@
                         <p class="form-hint">Kosongkan bila key tidak berubah.</p>
                     </div>
                 @endif
-                <x-form.input type="number" name="actual_cost" label="Biaya aktual (Rp)" :value="$renewal->estimated_cost" min="0" step="1000" />
+                <x-form.money name="actual_cost" label="Biaya aktual" :value="$renewal->actual_cost ?? $renewal->estimated_cost" />
                 <x-form.input name="po_number" label="No. PO" :value="$renewal->po_number" />
                 <div class="sm:col-span-2">
                     <label class="form-label">Bukti lisensi baru <span class="text-rose-500">*</span></label>

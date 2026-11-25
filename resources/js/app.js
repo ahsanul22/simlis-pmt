@@ -68,6 +68,30 @@ Alpine.data('chart', (config) => ({
     },
 }));
 
+// ---------------------------------------------------------------------------
+// Input rupiah berpemisah ribuan: <div x-data="money('20000000')"> (lihat x-form.money)
+// `raw` = angka polos untuk dikirim, tampilan diformat id-ID (titik) sambil menjaga posisi kursor.
+// ---------------------------------------------------------------------------
+Alpine.data('money', (initial) => ({
+    raw: initial ?? '',
+    get display() {
+        return this.raw === '' ? '' : Number(this.raw).toLocaleString('id-ID');
+    },
+    input(event) {
+        const el = event.target;
+        const digitsBeforeCaret = el.value.slice(0, el.selectionStart ?? el.value.length).replace(/\D/g, '').length;
+
+        this.raw = el.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 15);
+        el.value = this.display;
+
+        let pos = 0;
+        for (let seen = 0; pos < el.value.length && seen < digitsBeforeCaret; pos++) {
+            if (/\d/.test(el.value[pos])) seen++;
+        }
+        el.setSelectionRange(pos, pos);
+    },
+}));
+
 window.Alpine = Alpine;
 Alpine.plugin(collapse);
 Alpine.start();
