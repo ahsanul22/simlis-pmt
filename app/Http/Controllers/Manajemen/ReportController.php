@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Manajemen;
 
 use App\Http\Controllers\Concerns\BuildsReport;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReportController extends Controller
 {
@@ -17,8 +17,8 @@ class ReportController extends Controller
         return view('manajemen.reports.index', $this->reportData($request));
     }
 
-    public function export(Request $request): RedirectResponse
+    public function export(Request $request): Response
     {
-        return $this->pendingBackend();
+        return $this->exportReport($request);
     }
 }

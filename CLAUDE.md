@@ -21,7 +21,9 @@ Komunikasi dengan user: **Bahasa Indonesia santai**. User mengerjakan bertahap d
 - ✅ Email via Gmail SMTP (`.env` MAIL_* + App Password), `php artisan mail:test {email}`.
 - ✅ Pengaturan Super Admin tersimpan: ambang status, jadwal reminder, template email (`Setting::reminderMail()`, placeholder `{nama}` `{jumlah}` `{judul}` `{aplikasi}`), tombol kirim email contoh.
 - ✅ Reminder harian `licenses:send-reminders` (`--dry-run`, `--to=`), terjadwal di `Console\Kernel` jam `REMINDER_TIME`; butuh `php artisan schedule:work` / Task Scheduler di server.
-- Export laporan Excel/PDF (`reports.export`), update profil & password, settings update.
+- ✅ Filter masa berakhir bulan/tahun (`App\Support\ExpiryPeriod`, field `from_month/from_year/to_month/to_year`, partial `shared/_expiry-period-fields`) di daftar lisensi & laporan.
+- ✅ Laporan RAB + export (`App\Services\LicenseReport` → rekap qty per item/bulan/rincian; Excel `App\Exports\LicenseReportExcel` via PhpSpreadsheet, PDF `views/exports/license-report-pdf` via barryvdh/laravel-dompdf). Test: `tests/Feature/ReportExportTest.php`.
+- Update profil & password.
 - Ganti `authorizeBranch()` di base Controller dengan Policy bila logika otorisasi bertambah.
 
 ## Stack & perintah
