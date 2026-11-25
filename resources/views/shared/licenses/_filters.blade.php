@@ -56,6 +56,9 @@
             @endforeach
         </select>
     </div>
+    <div class="mt-4 border-t border-slate-100 pt-4 dark:border-slate-800">
+        @include('shared._expiry-period-fields')
+    </div>
     @if (collect($filters)->except('status')->filter()->isNotEmpty())
         <div class="mt-3 flex justify-end">
             <a href="{{ request()->url().($current ? '?status='.$current : '') }}" class="text-xs font-medium text-slate-500 hover:text-brand-600">Reset filter</a>

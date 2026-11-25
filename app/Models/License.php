@@ -194,7 +194,8 @@ class License extends Model
             ->when($f['branch'] ?? null, fn (Builder $q, $v) => $q->where('branch_id', $v))
             ->when($f['asset_type'] ?? null, fn (Builder $q, $v) => $q->where('asset_type', $v))
             ->when($f['license_type'] ?? null, fn (Builder $q, $v) => $q->where('license_type', $v))
-            ->when(ExpiryStatus::tryFrom($f['status'] ?? ''), fn (Builder $q, ExpiryStatus $s) => $q->whereExpiryStatus($s));
+            ->when(ExpiryStatus::tryFrom($f['status'] ?? ''), fn (Builder $q, ExpiryStatus $s) => $q->whereExpiryStatus($s))
+            ->tap(fn (Builder $q) => \App\Support\ExpiryPeriod::fromArray($f)->apply($q, 'licenses.end_date'));
     }
 
     /** Filter berdasarkan ExpiryStatus (untuk tabel & dashboard). */

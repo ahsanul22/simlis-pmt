@@ -8,6 +8,7 @@ use App\Enums\LicenseType;
 use App\Models\Branch;
 use App\Models\License;
 use App\Models\Vendor;
+use App\Support\ExpiryPeriod;
 use Illuminate\Http\Request;
 
 /**
@@ -19,7 +20,7 @@ trait ListsLicenses
     protected function licenseIndexData(Request $request): array
     {
         $user = $request->user();
-        $filters = $request->only(['q', 'vendor', 'branch', 'asset_type', 'license_type', 'status']);
+        $filters = $request->only(['q', 'vendor', 'branch', 'asset_type', 'license_type', 'status', ...ExpiryPeriod::KEYS]);
 
         $base = License::query()->visibleTo($user)->active();
 
