@@ -45,7 +45,7 @@
             <div class="h-64"><canvas x-data="chart(@js($statusChart))"></canvas></div>
             <dl class="mt-5 grid grid-cols-2 gap-3 border-t border-slate-100 pt-4 text-sm dark:border-slate-800">
                 <div><dt class="text-slate-500">Perangkat</dt><dd class="text-lg font-semibold">{{ $deviceCount }}</dd></div>
-                <div><dt class="text-slate-500">Pengajuan berjalan</dt><dd class="text-lg font-semibold">{{ $renewalCounts['draft'] + $renewalCounts['submitted'] + $renewalCounts['approved'] }}</dd></div>
+                <div><dt class="text-slate-500">Pengajuan berjalan</dt><dd class="text-lg font-semibold">{{ $renewalCounts['submitted'] + $renewalCounts['approved'] }}</dd></div>
             </dl>
         </div>
     </div>

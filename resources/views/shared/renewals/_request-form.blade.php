@@ -42,8 +42,7 @@
             </div>
             <div class="flex flex-wrap justify-end gap-2 border-t border-slate-200 bg-slate-50 px-5 py-4 dark:border-slate-800 dark:bg-slate-900/60">
                 <a href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
-                <button type="submit" name="action" value="draft" class="btn btn-secondary">Simpan Draft</button>
-                <button type="submit" name="action" value="submit" class="btn btn-primary"><x-icon name="paper-airplane" class="h-4 w-4" /> Ajukan ke Manajemen</button>
+                <button type="submit" class="btn btn-primary"><x-icon name="paper-airplane" class="h-4 w-4" /> Ajukan ke Manajemen</button>
             </div>
         </form>
 

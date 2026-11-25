@@ -19,7 +19,7 @@ class RenewalController extends Controller
     {
         return view('admin-ti.renewals.index', $this->renewalIndexData($request, [
             'to_complete' => [RenewalStatus::APPROVED],
-            'in_review' => [RenewalStatus::DRAFT, RenewalStatus::SUBMITTED],
+            'in_review' => [RenewalStatus::SUBMITTED],
             'history' => [RenewalStatus::COMPLETED],
             'closed' => [RenewalStatus::REJECTED, RenewalStatus::CANCELLED],
         ], 'to_complete'));

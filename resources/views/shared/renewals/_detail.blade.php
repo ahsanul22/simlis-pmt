@@ -5,7 +5,7 @@
 @php
     $s = $renewal->status;
     $steps = [
-        ['Diajukan', $renewal->submitted_at ?? $renewal->created_at, $renewal->requester?->name, $s !== \App\Enums\RenewalStatus::DRAFT],
+        ['Diajukan', $renewal->submitted_at ?? $renewal->created_at, $renewal->requester?->name, true],
         [$s === \App\Enums\RenewalStatus::REJECTED ? 'Ditolak' : 'Disetujui', $renewal->reviewed_at, $renewal->reviewer?->name, (bool) $renewal->reviewed_at],
         ['Lisensi baru diinput', $renewal->completed_at, $renewal->completer?->name, $s === \App\Enums\RenewalStatus::COMPLETED],
     ];

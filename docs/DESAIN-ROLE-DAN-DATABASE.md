@@ -41,12 +41,10 @@ Sumber kebenaran: `app/Enums/UserRole.php` (`permissions()`).
 
 ```mermaid
 stateDiagram-v2
-    [*] --> draft: PIC Branch / Admin TI buat pengajuan
-    draft --> submitted: Ajukan
+    [*] --> submitted: PIC Branch / Admin TI ajukan (tanpa draft)
     submitted --> approved: Manajemen setuju
     submitted --> rejected: Manajemen tolak
     approved --> completed: Admin TI input periode & key baru
-    draft --> cancelled
     submitted --> cancelled
     completed --> [*]: periode lama tersimpan sebagai riwayat
 ```

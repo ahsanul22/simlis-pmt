@@ -18,7 +18,7 @@ class RenewalController extends Controller
     public function index(Request $request): View
     {
         return view('pic-branch.renewals.index', $this->renewalIndexData($request, [
-            'active' => [RenewalStatus::DRAFT, RenewalStatus::SUBMITTED, RenewalStatus::APPROVED],
+            'active' => [RenewalStatus::SUBMITTED, RenewalStatus::APPROVED],
             'completed' => [RenewalStatus::COMPLETED],
             'closed' => [RenewalStatus::REJECTED, RenewalStatus::CANCELLED],
         ], 'active'));

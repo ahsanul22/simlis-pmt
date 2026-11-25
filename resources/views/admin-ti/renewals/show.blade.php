@@ -8,7 +8,7 @@
 <x-page-header :title="'Pengajuan '.$renewal->request_number" :back="route('admin-ti.renewals.index')"
                :subtitle="$license->branch->name.' · '.($license->device?->model->name ?? $license->softwareProduct?->name)">
     <x-slot:actions>
-        @if (in_array($s->value, ['draft', 'submitted'], true))
+        @if ($s === \App\Enums\RenewalStatus::SUBMITTED)
             <form method="POST" action="{{ route('admin-ti.renewals.cancel', $renewal) }}">
                 @csrf
                 <button class="btn btn-secondary"><x-icon name="x-circle" class="h-4 w-4" /> Batalkan</button>
